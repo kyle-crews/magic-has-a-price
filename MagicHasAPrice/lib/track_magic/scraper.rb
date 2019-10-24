@@ -50,28 +50,34 @@ class Card
         @spread ||= (price.delete("$").to_i - low_price.delete("$").to_i)
     end
 
+    def self.card_details
+        @details ||= @doc.xpath("//table[@class='txt-small align-left']").text.strip.split
+    end
+
+    def self.number
+        @number ||= card_details.last
+    end
+
+    def self.color
+        @color ||= card_details[2].delete("&nbsp&nbspMana")
+    end
+
+    def self.mana_cost
+        @mana_cost ||= card_details[4].delete("&nbsp&nbspType")
+    end
+
+    def self.text
+        @text ||= card_details[10..23].join(" ").split(".")[0]
+    end
+
+    def self.artist
+        @artist ||= card_details[26..27].join(" ")
+        artist.delete([16..-1])
+    end
+
+    def self.rarity
+    end
+
     binding.pry
 
 end
-    
-=begin
-    def self.details
-
-        card_details = {
-            :color => "Art"
-            :mana_cost => "0"
-            :text => "Sacrifice Black Lotus: Add three mana of any one color to your mana pool."
-            :artist => "Christopher Rush"
-            :rarity => "R"
-            :number => "233/302"
-        }
-
-        card_details
-    end
-
-    def self.best_buy_list
-        @best_buy_list ||=
-    end
-
-    Card Kingdom - $13999.99
-=end
