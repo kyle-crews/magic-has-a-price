@@ -1,5 +1,18 @@
 Class GatherTheMagic::Card
 
+def doc
+    @doc ||= Nokogiri::HTML(open(self.url))
+end
+
+def self.search
+
+    data = search("h2.card-name").text.strip
+    data
+
+end
+
+end
+
 attr_accessor :name, :url, :high_price, :current_price, :buy_url, :card_details
 
     @@all = []
@@ -39,20 +52,7 @@ attr_accessor :name, :url, :high_price, :current_price, :buy_url, :card_details
 
     end
 
-    def doc
-        @doc ||= Nokogiri::HTML(open(self.url))
-    end
-
-end
-
-def self.search
-
-    data = search("h2.card-name").text.strip
-    data
-
-end
-
-
+=end
 
 
 
