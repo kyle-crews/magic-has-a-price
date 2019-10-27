@@ -5,7 +5,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'pry'
 
-class Card
+class Scraper
 
     @@all = {}
 
@@ -29,6 +29,7 @@ class Card
         get_page.search("h2.card-name").text.strip.split
     end
 
+    # ||= ... if @variable is undefined or falsey, then evaluate @doc and set @variable to the result
     def self.name
         @name ||= name_price_deck[0..1].join(" ")
     end
@@ -73,10 +74,11 @@ class Card
 
     def self.artist
         @artist ||= card_details[26..27].join(" ")
-        artist.delete([16..-1])
+        @artist.gsub("Rarity:", '')
     end
 
     def self.rarity
+        card_details[28].gsub('&nbsp&nbspCard', '')
     end
 
     def start
@@ -144,6 +146,6 @@ class Card
         puts "number: #{self.number} - color: #{self.color} - name: #{self.name}"
     end
     
-    binding.pry
+binding.pry
 
 end

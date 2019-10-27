@@ -35,8 +35,12 @@ class Portfolio
         Card.all.select {|s| s.name == name}
     end
 
-Card.new("lotus","$25","$15","card magic","$10")
-Card.new("black","$15","$10","card magic","$5")
+    def self.name
+        Card.name
+    end
+
+Card.new("lotus","$25","$15","card magic","$10", "origin")
+Card.new("black","$15","$10","card magic","$5", "pro")
 
 binding.pry
 
