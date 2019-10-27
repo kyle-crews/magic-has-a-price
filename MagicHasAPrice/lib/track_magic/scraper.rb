@@ -1,4 +1,5 @@
-#class GatherTheMagic::Scraper
+#class GatherTheMagic
+#TrackMagic::
 
 require 'nokogiri'
 require 'open-uri'
@@ -78,6 +79,71 @@ class Card
     def self.rarity
     end
 
+    def start
+        get_page
+        card_details
+        main
+    end
+
+    def self.main
+
+        puts ""
+        puts ""
+        puts "################################"
+
+        puts "++++++   TRACKING MAGIC   ++++++"
+
+        puts "################################"
+        puts "
+,-------------------------------.
+|  PickleRick                   |
+| .---------------------------. |
+| |                   ,.._.--'| |
+| |   ,.  .   ``-  ,-'&,$. `. | |
+| |`.   ..       ,',&&,$$$.  .| |
+| |  \`--.___,--','&'/$$$$$$$$ | |
+| |   `-._  ___,'   ,,$$$'    | |
+| |      ,-' \\ \  \,    ,::::   | |
+| | __,-' ,:::::::::::::::::::| |
+| |',:::::::::::::::::::::::::| |
+| `---------------------------' |
+| Land                      7   |
+| .---------------------------. |
+| |          _,-.             | |
+| |        ,'`-..`.)          | |
+| |         ,--', );          | |
+| |        (   (,',,-,        | |
+| |         `--.__.-'         | |
+| |___________________________| |
+|       #GatherTheMagic
+|dev.kylecrews@gmail.com 338/350|
+`------------------------------Gr  
+        "
+        options = ["View portfolio", "Search for a card price", "Manage Portfolio"]
+        puts "---------------------------------"
+        puts ""
+        puts "select an option below ..."
+        puts ""
+        options.each.with_index(1) do |option, i|
+            puts "  #{i}.  #{option}"
+        end
+        puts ""
+        puts "---------------------------------"
+        input = gets.chomp
+
+        puts "test"
+
+
+    end
+    main
+
+    def self.display_data
+
+        puts "#{self.name}:"
+        puts "set: #{self.set} - price: #{self.price} - low_price: #{self.low_price} - spread: $#{self.spread}"
+        puts "number: #{self.number} - color: #{self.color} - name: #{self.name}"
+    end
+    
     binding.pry
 
 end

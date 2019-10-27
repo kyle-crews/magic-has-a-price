@@ -1,8 +1,5 @@
-require 'pry'
-require 'nokogiri'
-require 'open-uri'
+#!/usr/bin/env ruby
 
-require_relative '../lib/track_magic/scraper'
-require_relative '../lib/track_magic/price'
-require_relative '../lib/track_magic/cli'
-require_relative '../lib/track_magic/version'
+require './lib/track_magic'
+
+TrackMagic::CLI.new.start
