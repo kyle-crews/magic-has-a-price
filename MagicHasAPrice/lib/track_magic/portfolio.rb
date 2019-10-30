@@ -1,5 +1,6 @@
-require_relative "./card"
 require "pry"
+
+require_relative "./card"
 
 class Portfolio
 
@@ -35,18 +36,25 @@ class Portfolio
         Card.all.select {|s| s.name == name}
     end
 
-    def self.name
-        Card.name
-    end
+Card.new("lotus","$25","$15","$10", "origin")
+Card.new("black","$15","$10","$5", "pro")
+Card.new(name, Card.price, Card.purchase_price, Card.spread, Card.set)
 
-Card.new("lotus","$25","$15","card magic","$10", "origin")
-Card.new("black","$15","$10","card magic","$5", "pro")
-
-binding.pry
 
 end
   
+
 =begin
+
+        puts "card set:"
+        @input_set = gets.chomp.downcase
+        puts ""
+        puts ""
+
+        puts "purchase_price:"
+        @input_price = gets.chomp
+        puts ""
+        puts ""
 
 card.all
 
@@ -62,4 +70,5 @@ my_playlist.remove(angels)
 p my_playlist.includes?(lying_from_you) == true
 my_playlist.play_all
 my_playlist.display
+
 =end

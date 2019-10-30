@@ -5,11 +5,13 @@ require 'nokogiri'
 require 'open-uri'
 require 'pry'
 
+require_relative './cli'
+
 class Scraper
 
     @@all = {}
 
-    @doc = Nokogiri::HTML(open("http://www.mtgprice.com/sets/Unlimited/Black_Lotus"))
+    @doc = Nokogiri::HTML(open("http://www.mtgprice.com/sets/Urzas_Saga/Gaea's_Cradle"))
     
     def initialize(name=nil, url=nil, set=nil)
         @name = name
@@ -21,8 +23,15 @@ class Scraper
         @@all
     end
 
+    def get_url(set, name)
+        #set = Cli.main.input_set
+        #card = Cli.main.input_card
+        #@url = http://www.mtgprice.com/sets/#{set}/#{card}
+        #url
+    end
+
     def self.get_page
-        Nokogiri::HTML(open("http://www.mtgprice.com/sets/Unlimited/Black_Lotus"))
+        Nokogiri::HTML(open("http://www.mtgprice.com/sets/Urzas_Saga/Gaea's_Cradle"))
     end
     
     def self.name_price_deck
@@ -78,74 +87,7 @@ class Scraper
     end
 
     def self.rarity
-        card_details[28].gsub('&nbsp&nbspCard', '')
+        @rarity ||= card_details[28].gsub('&nbsp&nbspCard', '')
     end
-
-    def start
-        get_page
-        card_details
-        main
-    end
-
-    def self.main
-
-        puts ""
-        puts ""
-        puts "################################"
-
-        puts "++++++   TRACKING MAGIC   ++++++"
-
-        puts "################################"
-        puts "
-,-------------------------------.
-|  PickleRick                   |
-| .---------------------------. |
-| |                   ,.._.--'| |
-| |   ,.  .   ``-  ,-'&,$. `. | |
-| |`.   ..       ,',&&,$$$.  .| |
-| |  \`--.___,--','&'/$$$$$$$$ | |
-| |   `-._  ___,'   ,,$$$'    | |
-| |      ,-' \\ \  \,    ,::::   | |
-| | __,-' ,:::::::::::::::::::| |
-| |',:::::::::::::::::::::::::| |
-| `---------------------------' |
-| Land                      7   |
-| .---------------------------. |
-| |          _,-.             | |
-| |        ,'`-..`.)          | |
-| |         ,--', );          | |
-| |        (   (,',,-,        | |
-| |         `--.__.-'         | |
-| |___________________________| |
-|       #GatherTheMagic
-|dev.kylecrews@gmail.com 338/350|
-`------------------------------Gr  
-        "
-        options = ["View portfolio", "Search for a card price", "Manage Portfolio"]
-        puts "---------------------------------"
-        puts ""
-        puts "select an option below ..."
-        puts ""
-        options.each.with_index(1) do |option, i|
-            puts "  #{i}.  #{option}"
-        end
-        puts ""
-        puts "---------------------------------"
-        input = gets.chomp
-
-        puts "test"
-
-
-    end
-    main
-
-    def self.display_data
-
-        puts "#{self.name}:"
-        puts "set: #{self.set} - price: #{self.price} - low_price: #{self.low_price} - spread: $#{self.spread}"
-        puts "number: #{self.number} - color: #{self.color} - name: #{self.name}"
-    end
-    
-binding.pry
 
 end

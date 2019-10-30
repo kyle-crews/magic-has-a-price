@@ -1,16 +1,16 @@
 require 'pry'
-require_relative "./Scraper"
+
+require_relative "./scraper"
 
 class Card
-  attr_accessor :name, :price, :low_price, :low_price_vendor, :spread, :set
+  attr_accessor :name, :price, :purchase_price, :spread, :set
 
   @@all = []
 
-  def initialize(name, price, low_price, low_price_vendor, spread, set)
+  def initialize(name, price, purchase_price, spread, set)
     @name = name
     @price = price
-    @low_price = low_price
-    @low_price_vendor = low_price_vendor
+    @purchase_price = purchase_price
     @spread = spread
     @set = set
     @@all << self
@@ -27,26 +27,40 @@ class Card
   def self.price
     Scraper.price
   end
-  
-  def self.set
-    Scraper.set
-  end
 
   def self.low_price
     Scraper.low_price
+  end
+
+  def self.low_price_vendor
+    Scraper.low_price_vendor
   end
 
   def self.spread
     Scraper.spread
   end
 
-  def self.card_details
-    Scraper.number
-    Scraper.color
-    Scraper.mana_cost
-    Scraper.card_text
-    Scraper.artist
-    Scraper.rarity
+  def self.set
+    Scraper.set
+  end
+
+  def self.purchase_price
+    input_price = "$3"
+    input_price
+  end
+
+  def self.info
+
+   card_details = {
+    
+    :number => Scraper.number,
+    :color => Scraper.color,
+    :mana_cost => Scraper.mana_cost,
+    :text => Scraper.text,
+    :artist => Scraper.artist,
+    :rarity => Scraper.rarity
+  }
+  card_details
   end
 
 end
