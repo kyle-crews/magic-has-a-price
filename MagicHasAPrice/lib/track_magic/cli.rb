@@ -1,8 +1,4 @@
-require 'pry'
-
-require_relative './card'
-
-class CLI
+class TrackMagic::CLI
 
     def start
         get_page
@@ -72,26 +68,5 @@ class CLI
         
     end
     main
-
-    def self.card_url
-        puts "Enter a card name:"
-        input_card = gets.chomp.downcase.gsub!(" ", "_")
-        puts ""
-        puts ""
-        puts "Enter a set name:"
-        input_set = gets.chomp.downcase.gsub!(" ", "_")
-
-        card = input_card
-        set = input_set
-        create_url(set, card)
-
-    end
-
-    def self.create_url(set, name)
-        @url = "https://www.mtgprice.com/sets/#{set}/#{name}"
-        @url
-    end
-
-binding.pry
-    
+   
 end

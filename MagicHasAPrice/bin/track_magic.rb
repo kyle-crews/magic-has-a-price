@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require './lib/track_magic'
+require './lib/environment'
 
 TrackMagic::CLI.new.start

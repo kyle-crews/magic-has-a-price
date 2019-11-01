@@ -1,8 +1,4 @@
-require "pry"
-
-require_relative "./card"
-
-class Portfolio
+class TrackMagic::Portfolio
 
     def self.list_all_cards
         Card.all

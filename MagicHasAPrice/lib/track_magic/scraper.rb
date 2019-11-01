@@ -1,13 +1,4 @@
-#class GatherTheMagic
-#TrackMagic::
-
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
-
-require_relative './cli'
-
-class Scraper
+class TrackMagic::Scraper
 
     @@all = {}
 

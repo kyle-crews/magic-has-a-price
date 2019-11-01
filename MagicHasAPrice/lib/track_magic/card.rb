@@ -1,17 +1,13 @@
-require 'pry'
-
-require_relative "./scraper"
-
-class Card
-  attr_accessor :name, :price, :purchase_price, :spread, :set
+class TrackMagic::Card
+  
+  attr_accessor :name, :price, :purchase_price, :spread, :set, :url
 
   @@all = []
 
-  def initialize(name, price, purchase_price, spread, set)
+  def initialize(name, price, purchase_price, set)
     @name = name
     @price = price
     @purchase_price = purchase_price
-    @spread = spread
     @set = set
     @@all << self
   end
@@ -20,33 +16,80 @@ class Card
     @@all
   end
 
+  def self.card_name
+    puts ""
+    puts "Card name, please ..."
+    puts ""
+    @input_card = gets.chomp.downcase
+    if @input_card.include?(' ')
+        @input_card.gsub!(" ", "_")
+    else
+        @input_card
+    end
+end
+
+def self.card_set
+    puts ""
+    puts "Card set, please ..."
+    puts ""
+    @input_set = gets.chomp.downcase
+    if @input_set.include?(' ')
+        @input_set.gsub!(" ", "_")
+    else
+        @input_set
+    end
+end
+
+def self.input_url
+    name = card_name
+    set = card_set
+    @url = "https://www.mtgprice.com/sets/#{set}/#{name}"
+    @url
+end
+
+def self.search_url(set, name)
+    @url = "https://www.mtgprice.com/sets/#{set}/#{name}"
+    @url
+end
+
   def self.name
-    Scraper.name
+    @name ||= Scraper.name
   end
 
   def self.price
-    Scraper.price
+    @price ||= Scraper.price
   end
 
   def self.low_price
-    Scraper.low_price
+    @low_price ||= Scraper.low_price
   end
 
   def self.low_price_vendor
-    Scraper.low_price_vendor
+    @low_price_vendor ||= Scraper.low_price_vendor
   end
 
   def self.spread
-    Scraper.spread
+    @spread ||= Scraper.spread
   end
 
   def self.set
-    Scraper.set
+    @set ||= Scraper.set
   end
 
   def self.purchase_price
-    input_price = "$3"
-    input_price
+    puts ""
+    puts "Please enter the purchase price ..."
+    @input_price ||= gets.chomp
+    "$" + @input_price
+  end
+
+  def self.url
+    if @url != nil
+          @url
+    else @url == nil
+      puts ""
+      puts "error: no url located ... please run method to create url"
+    end
   end
 
   def self.info
@@ -64,20 +107,3 @@ class Card
   end
 
 end
-
-
-=begin
-class TrackMagic::Card
-
-  
-
-def self.card_details
-
-    @card_details.type_class
-    @card_details.card_text
-    @card_details.artist
-    @card_details.rarity
-    @card_details..number
-
-end
-=end
