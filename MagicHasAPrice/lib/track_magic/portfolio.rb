@@ -1,27 +1,34 @@
 class TrackMagic::Portfolio
 
+    # returns list of all cards currently in portfolio
     def self.list_all_cards
-        Card.all
+        TrackMagic::Card.all
     end
-  
+
+    # returns all card names currently in portfolio
+    def self.list_all_card_names
+        @all_card_names = list_all_cards.collect {|card| card.name}
+    end
+    
+    # returns all card prices currently in portfolio
+    def self.list_all_card_prices
+        @all_card_prices = list_all_cards.collect {|card| card.price}
+    end
+
+    # returns all card sets currently in portfolio
+    def self.list_all_card_sets
+        @all_card_sets = list_all_cards.collect {|card| card.set}
+    end
+
+    # returns the number of cards currently in portfolio
     def self.number_of_cards
-        Card.all.length 
-    end
-  
-    def remove(remove_card)
-        remove_song.select do |card|
-            @@all.delete(card)
-        end
-    end
-  
-    def play_all
-        @@all.select do |card|
-            card.play
-        end
+        TrackMagic::Card.all.length 
     end
   
     def self.display
-        Card.all.collect {|data| data}
+        puts "name: #{list_all_card_names}"
+        puts "set: #{list_all_card_sets}"
+        puts "price: #{list_all_card_prices}"
     end
 
     def self.display_spread
@@ -29,13 +36,14 @@ class TrackMagic::Portfolio
     end
 
     def self.search_by_name(name)
-        Card.all.select {|s| s.name == name}
+        TrackMagic::Card.all.select {|s| s.name == name}
     end
 
 TrackMagic::Card.new("lotus","$25", "origin")
 TrackMagic::Card.new("black","$15", "pro")
-TrackMagic::Card.new(name, TrackMagic::Card.price, TrackMagic::Card.set)
+TrackMagic::Card.new(TrackMagic::Card.name, TrackMagic::Card.price, TrackMagic::Card.set)
 
+binding.pry
 
 end
   
