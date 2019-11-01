@@ -4,10 +4,9 @@ class TrackMagic::Card
 
   @@all = []
 
-  def initialize(name, price, purchase_price, set)
+  def initialize(name=nil, price=nil, set=nil)
     @name = name
     @price = price
-    @purchase_price = purchase_price
     @set = set
     @@all << self
   end
@@ -44,7 +43,12 @@ def self.input_url
     name = card_name
     set = card_set
     @url = "https://www.mtgprice.com/sets/#{set}/#{name}"
-    @url
+    
+    if @url.include?(' ')
+      @url.gsub!(" ", "_")
+    else
+      @url
+    end
 end
 
 def self.search_url(set, name)
@@ -53,34 +57,33 @@ def self.search_url(set, name)
 end
 
   def self.name
-    @name ||= Scraper.name
+    @name ||= TrackMagic::Scraper.name
   end
 
   def self.price
-    @price ||= Scraper.price
+    @price ||= TrackMagic::Scraper.price
   end
 
   def self.low_price
-    @low_price ||= Scraper.low_price
+    @low_price ||= TrackMagic::Scraper.low_price
   end
 
   def self.low_price_vendor
-    @low_price_vendor ||= Scraper.low_price_vendor
+    @low_price_vendor ||= TrackMagic::Scraper.low_price_vendor
   end
 
   def self.spread
-    @spread ||= Scraper.spread
+    @spread ||= TrackMagic::Scraper.spread
   end
 
   def self.set
-    @set ||= Scraper.set
+    @set ||= TrackMagic::Scraper.set
   end
 
   def self.purchase_price
     puts ""
     puts "Please enter the purchase price ..."
-    @input_price ||= gets.chomp
-    "$" + @input_price
+    @input_price ||= "$" + gets.chomp
   end
 
   def self.url
@@ -96,12 +99,12 @@ end
 
    card_details = {
     
-    :number => Scraper.number,
-    :color => Scraper.color,
-    :mana_cost => Scraper.mana_cost,
-    :text => Scraper.text,
-    :artist => Scraper.artist,
-    :rarity => Scraper.rarity
+    :number => TrackMagic::Scraper.number,
+    :color => TrackMagic::Scraper.color,
+    :mana_cost => TrackMagic::Scraper.mana_cost,
+    :text => TrackMagic::Scraper.text,
+    :artist => TrackMagic::Scraper.artist,
+    :rarity => TrackMagic::Scraper.rarity
   }
   card_details
   end

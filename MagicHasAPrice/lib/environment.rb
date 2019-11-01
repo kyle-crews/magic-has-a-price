@@ -2,9 +2,8 @@
   require 'nokogiri'
   require 'open-uri'
 
-  require_relative '../lib/track_magic/card'
-  require_relative '../lib/track_magic/cli'
-  require_relative './track_magic/portfolio'
-  require_relative '../lib/track_magic/scraper'
-  require_relative './track_magic/version'
-  require_relative './bin/track_magic'
+  require_relative "./track_magic/version"
+  require_relative "./track_magic/scraper"
+  require_relative "./track_magic/card"
+  require_relative "./track_magic/cli"
+  require_relative "./track_magic/portfolio"

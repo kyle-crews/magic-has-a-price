@@ -7,6 +7,7 @@ class TrackMagic::Scraper
     def initialize(name=nil, url=nil, set=nil)
         @name = name
         @url = url
+        @set = set
         @@all << self
     end
 

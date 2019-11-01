@@ -1,9 +1,7 @@
 class TrackMagic::CLI
 
     def start
-        get_page
-        card_details
-        main
+        TrackMagic::CLI.main
     end
 
     def self.main
@@ -15,31 +13,7 @@ class TrackMagic::CLI
         puts "++++++   TRACKING MAGIC   ++++++"
 
         puts "################################"
-        puts "
-,-------------------------------.
-|  PickleRick                   |
-| .---------------------------. |
-| |                   ,.._.--'| |
-| |   ,.  .   ``-  ,-'&,$. `. | |
-| |`.   ..       ,',&&,$$$.  .| |
-| |  \`--.___,--','&'/$$$$$$$$ | |
-| |   `-._  ___,'   ,,$$$'    | |
-| |      ,-' \\ \  \,    ,::::   | |
-| | __,-' ,:::::::::::::::::::| |
-| |',:::::::::::::::::::::::::| |
-| `---------------------------' |
-| Land                      7   |
-| .---------------------------. |
-| |          _,-.             | |
-| |        ,'`-..`.)          | |
-| |         ,--', );          | |
-| |        (   (,',,-,        | |
-| |         `--.__.-'         | |
-| |___________________________| |
-|       #GatherTheMagic
-|dev.kylecrews@gmail.com 338/350|
-`------------------------------Gr  
-        "
+        puts ""
         options = ["View/manage portfolio", "Search for a card price", "Run desktop ticker"]
         puts "---------------------------------"
         puts ""
@@ -67,6 +41,5 @@ class TrackMagic::CLI
         puts ""
         
     end
-    main
    
 end

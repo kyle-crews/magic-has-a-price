@@ -32,9 +32,9 @@ class TrackMagic::Portfolio
         Card.all.select {|s| s.name == name}
     end
 
-Card.new("lotus","$25","$15","$10", "origin")
-Card.new("black","$15","$10","$5", "pro")
-Card.new(name, Card.price, Card.purchase_price, Card.spread, Card.set)
+TrackMagic::Card.new("lotus","$25", "origin")
+TrackMagic::Card.new("black","$15", "pro")
+TrackMagic::Card.new(name, TrackMagic::Card.price, TrackMagic::Card.set)
 
 
 end
