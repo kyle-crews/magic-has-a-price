@@ -1,3 +1,0 @@
-=> run in powershell
-
-$s=(Read-Host)*180;for(){Write-Host($s.substring(($i=++$i%80),80)+"`r")-N -F R -B 0;sleep -m 99}
