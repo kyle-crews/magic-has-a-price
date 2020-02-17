@@ -1,0 +1,23 @@
+{
+  "name": "ticker-mtg",
+  "version": "1.0.0",
+  "description": "\"Displays current prices of a MTG card portfolio. Prices and card details are displayed as scrolling text.\" ",
+  "main": "app/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyle-crews/magic-has-a-price.git"
+  },
+  "author": "Kyle Crews",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kyle-crews/magic-has-a-price/issues"
+  },
+  "homepage": "https://github.com/kyle-crews/magic-has-a-price#readme",
+  "devDependencies": {
+    "electron": "^7.1.9"
+  }
+}
