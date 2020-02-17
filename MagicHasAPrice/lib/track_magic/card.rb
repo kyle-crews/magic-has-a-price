@@ -1,11 +1,12 @@
 class TrackMagic::Card
   
-  attr_accessor :name, :price, :purchase_price, :spread, :set, :url
+  attr_accessor :name, :price, :purchase_price, :set
 
   @@all = []
 
-  def initialize(name=nil, price=nil, set=nil)
+  def initialize(name, set, purchase_price)
     @name = name
+    @purchase_price = purchase_price
     @price = price
     @set = set
     @@all << self
@@ -19,42 +20,40 @@ class TrackMagic::Card
     puts ""
     puts "Card name, please ..."
     puts ""
-    @input_card = gets.chomp.downcase
+    @card = gets.chomp.downcase
+    @input_card = @card.split(/ |\_/).map(&:capitalize).join(" ")
     if @input_card.include?(' ')
         @input_card.gsub!(" ", "_")
     else
         @input_card
     end
-end
+  end
 
-def self.card_set
-    puts ""
-    puts "Card set, please ..."
-    puts ""
-    @input_set = gets.chomp.downcase
-    if @input_set.include?(' ')
-        @input_set.gsub!(" ", "_")
-    else
-        @input_set
-    end
-end
+  def self.card_set
+      puts ""
+      puts "Card set, please ..."
+      puts ""
+      @set = gets.chomp.downcase
+      @input_set = @set.split(/ |\_/).map(&:capitalize).join(" ")
+      if @input_set.include?(' ')
+          @input_set.gsub!(" ", "_")
+      else
+          @input_set
+      end
+  end
 
-def self.input_url
-    name = card_name
-    set = card_set
-    @url = "https://www.mtgprice.com/sets/#{set}/#{name}"
-    
-    if @url.include?(' ')
-      @url.gsub!(" ", "_")
-    else
-      @url
-    end
-end
-
-def self.search_url(set, name)
-    @url = "https://www.mtgprice.com/sets/#{set}/#{name}"
-    @url
-end
+  def self.input_url
+      name = card_name
+      set = card_set
+      @entered_url = "https://www.mtgprice.com/sets/#{set}/#{name}"
+      
+      if @entered_url.include?(' ')
+        @entered_url.gsub!(" ", "_")
+      else
+        @entered_url
+      end
+      @entered_url
+  end
 
   def self.name
     @name ||= TrackMagic::Scraper.name
@@ -86,14 +85,6 @@ end
     @input_price ||= "$" + gets.chomp
   end
 
-  def self.url
-    if @url != nil
-          @url
-    else @url == nil
-      puts ""
-      puts "error: no url located ... please run method to create url"
-    end
-  end
 
   def self.info
 
@@ -107,6 +98,13 @@ end
     :rarity => TrackMagic::Scraper.rarity
   }
   card_details
+  end
+
+  def self.search_by_name
+    puts ""
+    puts ""
+    input_url
+    TrackMagic::Scraper.get_page(@url)
   end
 
 end

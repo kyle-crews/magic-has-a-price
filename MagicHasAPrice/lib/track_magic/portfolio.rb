@@ -25,10 +25,10 @@ class TrackMagic::Portfolio
         TrackMagic::Card.all.length 
     end
   
-    def self.display
-        puts "name: #{list_all_card_names}"
-        puts "set: #{list_all_card_sets}"
-        puts "price: #{list_all_card_prices}"
+    def self.display_portfolio
+        list_all_cards{ |a, b| a.name <=> b.name }.each.with_index(1) do |s, i|
+            puts "#{i}. #{s.name} | #{s.set} | #{s.price}"
+        end
     end
 
     def self.display_spread
@@ -39,11 +39,16 @@ class TrackMagic::Portfolio
         TrackMagic::Card.all.select {|s| s.name == name}
     end
 
+    def self.add_new_card(name, price, set)
+        TrackMagic::Card.new(name, price, set)
+    end
+
+
+
 TrackMagic::Card.new("lotus","$25", "origin")
 TrackMagic::Card.new("black","$15", "pro")
 TrackMagic::Card.new(TrackMagic::Card.name, TrackMagic::Card.price, TrackMagic::Card.set)
 
-binding.pry
 
 end
   
